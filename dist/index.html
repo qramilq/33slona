@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="http://necolas.github.io/normalize.css/5.0.0/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Lol</title>
+</head>
+<body>  
+    <div class="container">
+        <aside class="sidebar">
+            <header class="sidebar__header">
+                <a href="/" class="logo sidebar__header-logo">
+                    <img src="img/logo.png" alt="33 СЛОНА">
+                </a>
+            </header>
+            <nav class="nav">
+                <a href="#" class="nav__link nav__link_active">
+                    <i class="icon-home icons nav__link-icon"></i>
+                    <span class="nav__link-text">Объекты</span>
+                </a>
+                <a href="#" class="nav__link">
+                    <i class="icon-calendar icons nav__link-icon"></i>
+                    <span class="nav__link-text">Календарь</span>
+                </a>
+                <a href="#" class="nav__link">
+                    <i class="icon-phone icons nav__link-icon"></i>
+                    <span class="nav__link-text">Звонки</span>
+                </a>
+                <a href="#" class="nav__link">
+                    <i class="icon-user icons nav__link-icon"></i>
+                    <span class="nav__link-text">Агенты</span>
+                </a>
+                <a href="#" class="nav__link">
+                    <i class="icon-chart icons nav__link-icon"></i>
+                    <span class="nav__link-text">Сводка</span>
+                </a>
+                <a href="#" class="nav__link">
+                    <i class="icon-question icons nav__link-icon"></i>
+                    <span class="nav__link-text">Помощь</span>
+                </a>
+            </nav>
+        </aside>
+        <main class="content">
+            <header class="profile-bar">
+                <div class="no-border-select-wrapper profile-bar__no-border-select-wrapper">
+                    <select name="placement" class="no-border-select">
+                        <option value="1" class="no-border-select__item">Агенство на Серпуховской</option>
+                        <option value="2" class="no-border-select__item">Агенство на Казанской</option>
+                        <option value="3" class="no-border-select__item">Агенство на Петроградской</option>
+                    </select>
+                </div>
+                <div class="profile-block profile-bar__profile-block">
+                    <span class="profile-block__abbr profile-block__abbr_color-one">СИ</span>
+                    <a href="#" class="profile-block__full-name">Сергей Игнатенко</a>
+                    <button class="profile-block__logout-btn" type="button" role="button"></button>
+                </div>
+            </header>
+            <section class="filters-wrapper">
+                <header class="filters__header">
+                    <h1>Объекты</h1>
+                    <button class="btn btn_size_normal btn_orange filters__header-btn" type="button">
+                        Добавть объект
+                    </button>
+                </header>
+                <article class="filters">
+                    <div class="filters__row filters__row_first">
+                        <div class="border-select-wrapper filters__block">
+                            <select class="border-select border-select_status">
+                                <option class="border-select__option" value="1" selected>Активные <span class="border-select__option-descr">8</span></option>
+                                <option class="border-select__option" value="2">Активные</option>
+                                <option class="border-select__option" value="3">Активные</option>
+                            </select>
+                        </div>
+                        <div class="input-wrapper filters__block">
+                            <label class="icon-magnifier icons input-icon" for="input-search"></label>
+                            <input class="input input_icon input_search" type="text" id="input-search" placeholder="№ объекта, адрес, лот">
+                        </div>
+                        <div class="border-select-wrapper filters__block">
+                            <select class="border-select border-select_agents">
+                                <option class="border-select__option" value="1" selected>Все агенты</option>
+                                <option class="border-select__option" value="2">Не все агенты</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filters__row filters__row_second">
+                        <div class="border-select-wrapper filters__block">
+                            <select class="border-select border-select_types">
+                                <option class="border-select__option" value="1" selected>Все типы</option>
+                                <option class="border-select__option" value="2">Не все типы</option>
+                            </select>
+                        </div>
+                        <div class="border-select-wrapper filters__block">
+                            <select class="border-select border-select_contracts">
+                                <option class="border-select__option" value="1" selected>Все договоры</option>
+                                <option class="border-select__option" value="2">Не все договоры</option>
+                            </select>
+                        </div>
+                    </div>
+                </article>
+            </section>
+            <section class="objects-wrapper">
+                <table class="objects__table">
+                    <thead>
+                        <tr>
+                            <th>№, добавлен</th>
+                            <th></th>
+                            <th>Адрес, цена, комиссия</th>
+                            <th>Все звонки<br>пропущено</th>
+                            <th>Статус, дата<br> изменения</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="#" class="objects__table-number link">№8234545</a> <br>
+                                <span class="objects__table-wday">сегодня</span>
+                                <span class="objects__table-feature">Эксклюзив</span>
+                            </td>
+                            <td>
+                                <img class="objects__table-pic" src="#" alt="photo" width="110"> <br>
+                                <span class="objects__table-pic-count">8 фото</span>
+                            </td>
+                            <td>
+                                <h3 class="objects__table-title">
+                                    <a href="#" class="objects__table-title-link link">
+                                        Ленинградский пр-т, д. 70, Москва
+                                    </a>
+                                </h3>
+                                <span class="objects__table-address objects__table-address_subway_green">Динамо</span>
+                                <p class="objects__table-descr">
+                                    2 комнаты, 45 м<sup>2</sup>, этаж 7/12<br>
+                                    Лот: 2347-ЖТ
+                                </p>
+                                <p class="objects__table-price-wrapper">
+                                    <span class="objects__table-price">
+                                        12 850 000 
+                                    </span>
+                                    <br>
+                                    <span class="objects__table-price objects__table-price_month">
+                                        112 000
+                                    </span>
+                                </p>
+                            </td>
+                            <td>
+                                <div class="objects__table-calls-wrapper">
+                                    <span class="objects__table-calls objects__table-calls_incoming">37</span>
+                                    <span class="objects__table-calls objects__table-calls_missing">12</span>
+                                </div>
+                                <a href="#" class="objects__table-author link">К. Константинопольский</a>
+                            </td>
+                            <td>
+                                <span class="objects__table-status objects__table-status_public">Опубликован</span> <br>
+                                <span class="objects__table-wday link">сегодня</span>
+                            </td>
+                            <td>
+                                <i class="icon-options-vertical icons objects__table-more"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
