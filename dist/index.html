@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" ng-app="slonApp">
 <head>
     <meta charset="UTF-8">
 
@@ -43,7 +43,7 @@
                 </a>
             </nav>
         </aside>
-        <main class="content">
+        <main class="content" ng-controller="mainCtrl">
             <header class="profile-bar">
                 <div class="no-border-select-wrapper profile-bar__no-border-select-wrapper">
                     <select name="placement" class="no-border-select">
@@ -68,15 +68,15 @@
                 <article class="filters">
                     <div class="filters__row filters__row_first">
                         <div class="border-select-wrapper filters__block">
-                            <select class="border-select border-select_status">
-                                <option class="border-select__option" value="1" selected>Активные <span class="border-select__option-descr">8</span></option>
-                                <option class="border-select__option" value="2">Активные</option>
-                                <option class="border-select__option" value="3">Активные</option>
+                            <select class="border-select border-select_status" name="statusFilter" id="statusFilter"
+                                ng-model="statusFilter"
+                                ng-options="status.status for status in statusList track by status.value"
+                            >
                             </select>
                         </div>
                         <div class="input-wrapper filters__block">
                             <label class="icon-magnifier icons input-icon" for="input-search"></label>
-                            <input class="input input_icon input_search" type="text" id="input-search" placeholder="№ объекта, адрес, лот">
+                            <input class="input input_icon input_search" type="text" id="input-search" placeholder="№ объекта, адрес, лот" ng-model="searchFilter">
                         </div>
                         <div class="border-select-wrapper filters__block">
                             <select class="border-select border-select_agents">
@@ -114,34 +114,46 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr ng-repeat="flat in flats | myFilter:statusFilter:searchFilter">
                             <td>
-                                <a href="#" class="objects__table-number link">№8234545</a> <br>
+                                <a href="#" class="objects__table-number link">№{{flat.id}}</a> <br>
                                 <span class="objects__table-wday">сегодня</span>
                                 <span class="objects__table-feature">Эксклюзив</span>
                             </td>
                             <td>
-                                <img class="objects__table-pic" src="#" alt="photo" width="110"> <br>
-                                <span class="objects__table-pic-count">8 фото</span>
+                                <div ng-if="flat.pic">
+                                    <img class="objects__table-pic" src="#" alt="photo" width="110" height="75" ng-if="flat.pic"> 
+                                    <br>
+                                    <span class="objects__table-pic-count">8 фото</span>                                    
+                                </div>
+                                <div ng-if="!flat.pic">
+                                    <div class="objects__table-no-pic">
+                                        <i class="icon-camera icons"></i>
+                                    </div>
+                                    <span class="objects__table-pic-count">нет фото</span>   
+                                </div>
                             </td>
                             <td>
                                 <h3 class="objects__table-title">
                                     <a href="#" class="objects__table-title-link link">
-                                        Ленинградский пр-т, д. 70, Москва
+                                        {{flat.address}}
                                     </a>
                                 </h3>
-                                <span class="objects__table-address objects__table-address_subway_green">Динамо</span>
+                                <span class="objects__table-address objects__table-address_subway_green" ng-if="flat.metro">{{flat.metro}}</span>
                                 <p class="objects__table-descr">
-                                    2 комнаты, 45 м<sup>2</sup>, этаж 7/12<br>
+                                    {{flat.rooms}} 
+                                    <span ng-if="flat.rooms == 1"> комната</span>
+                                    <span ng-if="flat.rooms != 1"> комнаты</span>, 
+                                    45 м<sup>2</sup>, этаж {{flat.floor}}/{{flat.houseFloors}}<br>
                                     Лот: 2347-ЖТ
                                 </p>
                                 <p class="objects__table-price-wrapper">
                                     <span class="objects__table-price">
-                                        12 850 000 
+                                        {{flat.price | number }} ₽
                                     </span>
                                     <br>
                                     <span class="objects__table-price objects__table-price_month">
-                                        112 000
+                                        112 000 ₽
                                     </span>
                                 </p>
                             </td>
@@ -150,20 +162,36 @@
                                     <span class="objects__table-calls objects__table-calls_incoming">37</span>
                                     <span class="objects__table-calls objects__table-calls_missing">12</span>
                                 </div>
-                                <a href="#" class="objects__table-author link">К. Константинопольский</a>
+                                <a href="#" class="objects__table-author link">{{flat.agentName}}</a>
                             </td>
                             <td>
-                                <span class="objects__table-status objects__table-status_public">Опубликован</span> <br>
+                                <span class="objects__table-status " ng-class="'objects__table-status_' + statusList[flat.status].class">{{statusList[flat.status].status}}</span> <br>
                                 <span class="objects__table-wday link">сегодня</span>
                             </td>
                             <td>
-                                <i class="icon-options-vertical icons objects__table-more"></i>
+                                <i class="icon-options-vertical icons objects__table-controls objects__table-controls_more" 
+                                    ng-click="isObjectsControlsShow =!isObjectsControlsShow"
+                                    ng-show="!isObjectsControlsShow"
+                                ></i>
+                                <div class="objects__table-controls-wrapper objects__table-controls-wrapper_action" 
+                                    ng-show="isObjectsControlsShow"
+                                >
+                                    <i class="icon-pencil icons objects__table-controls objects__table-controls_edit"></i>
+                                    <i class="icon-trash icons objects__table-controls objects__table-controls_remove"></i>
+                                </div>
                             </td>
+                        </tr>
+                        <tr ng-show="(flats | myFilter:statusFilter:searchFilter).length == 0">
+                            <td colspan="6">Nothing to show</td>
                         </tr>
                     </tbody>
                 </table>
             </section>
         </main>
     </div>
+
+    <!--SCRIPTS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="js/mainCtrl.js"></script>
 </body>
 </html>

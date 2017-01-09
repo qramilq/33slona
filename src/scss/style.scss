@@ -365,7 +365,7 @@ h3 {
 
 .objects {
     &-wrapper{
-        padding: 10px 45px 10px 30px;
+        padding: 10px 45px 104px 30px;
     }
     &__table {
         font-size: 13px;
@@ -407,7 +407,25 @@ h3 {
             bottom: 20px;
         }
         &-pic {}
-        &-pic-count { line-height: 1.54; }
+        &-no-pic {
+            width:110px;
+            height:75px;
+            background-color: #fff;
+            border: solid 1px rgba(0, 0, 0, 0.1);
+            display: table;
+
+            .icons {
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+                font-size: 21px;
+                color: rgba(0, 0, 0, 0.2);
+            }
+        }
+        &-pic-count { 
+            color: rgba(0, 0, 0, 0.5);
+            line-height: 1.54; 
+        }
         &-title {
             margin: 0;
         }
@@ -474,15 +492,47 @@ h3 {
 
             &_public:before {                
                 @extend %status-icon;
-                background-color: $status_public;
-                
+                background-color: $status_public;                
+            }
+            &_moderation:before {                
+                @extend %status-icon;
+                background-color: $status_moderation;                
+            }
+            &_prepaid:before {                
+                @extend %status-icon;
+                background-color: $status_prepaid;                
+            }
+            &_rejected:before {                
+                @extend %status-icon;
+                background-color: $status_rejected;                
+            }
+            &_draft:before {                
+                @extend %status-icon;
+                background-color: $status_draft;                
             }
         }
-        &-more{
-            color: rgba(0, 0, 0, .5);
-            cursor: pointer;
-            &:hover {
+        &-controls{
+            &-wrapper{
+                cursor: pointer;
+            }
+            
+            &_more {
+                color: rgba(0, 0, 0, .5);
+                &:hover {
+                    color: #BE1E2D;
+                }
+            }
+            &_edit {
+                color: #0072BC;
+                // &:hover {
+                //     color: #BE1E2D;
+                // }
+            }
+            &_remove {
                 color: #BE1E2D;
+                // &:hover {
+                //     color: #BE1E2D;
+                // }
             }
         }
     }
