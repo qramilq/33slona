@@ -20,5 +20,5 @@ $ gulp run
 ```
 ## Run develop mode
 ```bash
-$ gulp serve
+$ gulp
 ```
