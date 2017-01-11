@@ -36,16 +36,16 @@ $status_draft: rgba(0, 0, 0, 0.3);
 }
 
 /*FONTS*/
-@import 'simple-line-icons';
+// @import '../vendor/simple-line-icons';
 @font-face {
   font-family: 'PTSans';
-  src:  url('../fonts/PT_Sans/PT_Sans-Regular.ttf') format('truetype');
+  src:  url('../../fonts/PT_Sans/PT_Sans-Regular.ttf') format('truetype');
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
   font-family: 'PTSans';
-  src:  url('../fonts/PT_Sans/PT_Sans-Bold.ttf') format('truetype');
+  src:  url('../../fonts/PT_Sans/PT_Sans-Bold.ttf') format('truetype');
   font-style: normal;
   font-weight: bold;
 }
@@ -241,7 +241,7 @@ h3 {
     }
     &__logout-btn {
         border:0;
-        background: url(../img/logout-icon.svg);
+        background: url(../../img/logout-icon.svg);
         color: #000;
         opacity: .3;
         cursor: pointer;
@@ -433,11 +433,11 @@ h3 {
             &_subway{
                 &_green:before {                    
                     @extend %subway-icon;
-                    content: url(../img/metro-green.svg);
+                    content: url(../../img/metro-green.svg);
                 }
                 &_red:before {
                     @extend %subway-icon;
-                    content: url(../img/metro-red.svg);
+                    content: url(../../img/metro-red.svg);
                 }
             }
         }
@@ -467,11 +467,11 @@ h3 {
 
             &_incoming:before {
                 @extend %calls-icon;
-                content: url(../img/calls-incoming.svg);
+                content: url(../../img/calls-incoming.svg);
             }
             &_missing:before {
                 @extend %calls-icon;
-                content: url(../img/calls-missing.svg);
+                content: url(../../img/calls-missing.svg);
             }
         }
         &-author {

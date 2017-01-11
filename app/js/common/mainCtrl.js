@@ -1,8 +1,11 @@
 var app = angular.module('slonApp', []);
 
-app.controller('mainCtrl', function($scope, $http, $locale) {
+app.controller('mainCtrl', function($scope, $http, $locale, $filter) {
     // number separator
     $locale.NUMBER_FORMATS.GROUP_SEP = " ";
+
+    // filter value
+    $scope.myFilter = $filter('myFilter');
 
     // statuses
     $scope.statusList = [
@@ -38,17 +41,19 @@ app.controller('mainCtrl', function($scope, $http, $locale) {
 
     // get data from json
     $http.get("../testObject.json")
-    .then(function(response) {
-        $scope.flats= response.data.data;
-        console.log('data is ', response.data.data)
-    });
+        .then(function(response) {
+            var data = response.data.data;
+            $scope.flats= data;
+        });
 
 });
 
+// Custom filter
 app.filter('myFilter', function() {
     return function(flats, statusFilter, searchFilter) {
         if (flats){
 
+            if (!statusFilter) return flats;
             // result filtered array
             var filtered = [];
 
@@ -58,8 +63,11 @@ app.filter('myFilter', function() {
             }
 
             checkSearch = function(flat, searchString) {
+
+                // if search filter is empty
                 if (!searchString) return true;
-                       
+                
+                // tmp variable to converting incoming variables to lower case strings
                 var flatData = {
                     id: flat['id'].toString().toLowerCase(),
                     address: flat['address'].toString().toLowerCase(),
@@ -67,22 +75,18 @@ app.filter('myFilter', function() {
                 // format search string to string and to lower case to use indexOf()
                 var formattedSearchString = searchString.toString().toLowerCase(); 
 
-                // checking strings (need flat['lot'] check, don't have)
+                // checking strings (need flat['lot'] check, but don't have)
                 if ((flatData['id'].indexOf(formattedSearchString) != -1) || (flatData['address'].indexOf(formattedSearchString) != -1)) 
                 return true;
             }
 
-            // checking each flat
+            // checking each flat on filter's conditions
             for (var i = 0; i < flats.length; i++) {
                 if (checkStatus(flats[i], statusFilter.value) && checkSearch(flats[i], searchFilter))
                     filtered.push(flats[i]);
             }
 
-            // console.log('statusFilter ', statusFilter);
-            // console.log('searchFilter ', searchFilter);
-            // console.log('filtered ', filtered);
-            return filtered;
-            
+            return filtered;            
         }
 
     }

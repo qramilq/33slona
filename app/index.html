@@ -5,8 +5,13 @@
 
     <!--STYLES-->
 
-    <link rel="stylesheet" href="css/vendor.min.css">
-    <link rel="stylesheet" href="css/main.min.css">
+    <!--build:css css/vendor.min.css -->
+    <link rel="stylesheet" href="css/vendor/normalize.css">
+    <link rel="stylesheet" href="css/vendor/simple-line-icons.css">
+    <!-- endbuild -->
+    <!-- build:css css/main.min.css -->
+    <link rel="stylesheet" href="css/common/style.css">
+    <!-- endbuild -->
 
     <title>33 Слона</title>
 </head>
@@ -74,8 +79,7 @@
                                 ng-model="statusFilter"
                                 ng-options="status.status + ' ' + myFilter(flats,status).length for status in statusList track by status.value"
                             >
-                                <!--<option ng-repeat="status in statusList" class="border-select__option" value="{{status.value}}" ng-selected="status.value == statusList[1].value">{{status.status}} <span class="border-select__option-descr">5</span></option>-->
-                                <option value="all">Все</option>
+                                <option value="">Все {{myFilter(flats,status).length}}</option>
                             </select>
                         </div>
                         <div class="input-wrapper filters__block">
@@ -196,7 +200,11 @@
 
     <!--SCRIPTS-->
 
-    <script src="js/vendor.min.js"></script>
-    <script src="js/main.min.js"></script>
+    <!--build:js js/vendor.min.js -->
+    <script src="js/vendor/angular.min.js"></script>
+    <!-- endbuild -->
+    <!-- build:js js/main.min.js -->
+    <script src="js/common/mainCtrl.js"></script>
+    <!-- endbuild -->
 </body>
 </html>
