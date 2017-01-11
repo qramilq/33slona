@@ -53,13 +53,15 @@ app.filter('myFilter', function() {
     return function(flats, statusFilter, searchFilter) {
         if (flats){
 
-            if (!statusFilter) return flats;
-            // result filtered array
+            // filtered array
             var filtered = [];
+
+            // if status is 'Все'
+            statusFilter = statusFilter || { value: '' }
 
             // checking flat's status function
             checkStatus = function(flat, status) {
-                if (flat.status == status) return true;
+                return (flat.status === status || status === '') || false;
             }
 
             checkSearch = function(flat, searchString) {
@@ -76,8 +78,10 @@ app.filter('myFilter', function() {
                 var formattedSearchString = searchString.toString().toLowerCase(); 
 
                 // checking strings (need flat['lot'] check, but don't have)
-                if ((flatData['id'].indexOf(formattedSearchString) != -1) || (flatData['address'].indexOf(formattedSearchString) != -1)) 
-                return true;
+                return ((flatData['id'].indexOf(formattedSearchString) !== -1) || 
+                    (flatData['address'].indexOf(formattedSearchString) !== -1))
+                    || false;
+
             }
 
             // checking each flat on filter's conditions
