@@ -35,6 +35,7 @@ $status_draft: rgba(0, 0, 0, 0.3);
     margin-right: 5px;
 }
 
+
 /*FONTS*/
 // @import '../vendor/simple-line-icons';
 @font-face {
@@ -86,6 +87,7 @@ h3 {
     color: #000000;
 }
 
+// LINK STYLE
 .link {
     font-family: $font-family-1;
     color: $color-link;
@@ -95,15 +97,7 @@ h3 {
     }
 }
 
-.sign-error {
-    font-family: $font-family-1;
-    font-size: 13px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.38;
-    color: #be1e2d;
-}
+// MAIN CONTAINER
 .container {
     width: 1000px;
     margin: 0 auto;
@@ -111,6 +105,7 @@ h3 {
     flex-wrap: nowrap;
 }
 
+// BUTTONS STYLE
 .btn {
     display: block;
     border:0;
@@ -129,8 +124,15 @@ h3 {
     }
 }
 
+// Flex box
+.flex-bx {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 0;
+    flex-wrap: nowrap;
+}
 
-
+// SIDEBAR
 .sidebar {   
     width: 160px;
     background-color: #0a426b;
@@ -142,6 +144,7 @@ h3 {
     }
 }
 
+// MAIN NAVIGATION
 .nav {
     &__link{
         display: block;
@@ -272,7 +275,7 @@ h3 {
         }
     }
     &-wrapper{    
-        padding: 21px 45px 10px 30px;
+        padding: 21px 45px 15px 30px;
     }
 
     &__header {
@@ -365,32 +368,36 @@ h3 {
 
 .objects {
     &-wrapper{
-        padding: 10px 45px 104px 30px;
+        padding: 15px 45px 104px 30px;
     }
+
     &__table {
         font-size: 13px;
         line-height: 1.38;
         color: rgba(0, 0, 0, 0.85);
         width: 100%;
-        border-collapse: collapse;
 
-        thead th {
-            font-size: 13px;
-            font-weight: bold;
-            line-height: 1.15;
-            text-align: left;
+        &-row {
+            border-bottom: 1px solid #d8d8d8;
+            padding: 16px 0 20px;
+            border-collapse: collapse;
 
+            &_thead {
+                font-size: 13px;
+                font-weight: bold;
+                line-height: 1.15;
+                text-align: left; 
+                border-bottom: 1px solid #d8d8d8;
+                padding-bottom: 15px;               
+            }
+        }
+ 
+        &-th, &-td {
             &:nth-child(1) {width: 90px;}
             &:nth-child(2) {width: 125px;}
             &:nth-child(3) {width: 323px;}
             &:nth-child(4) {width: 104px;}
             &:nth-child(5) {width: 130px;}
-        }
-        tbody > tr > td {
-            border-top: 1px solid #d8d8d8;
-            border-bottom: 1px solid #d8d8d8;
-            padding: 20px 0;
-            vertical-align: top;
             position: relative;
         }
 
@@ -404,7 +411,7 @@ h3 {
             color: rgba(0, 0, 0, 0.85);
             position: absolute;
             left:0;
-            bottom: 20px;
+            bottom: 0;
         }
         &-pic {}
         &-no-pic {
@@ -444,7 +451,10 @@ h3 {
         &-descr {margin:0 0 10px;}
         &-price {
             font-size: 15px;
-            line-height: 1.33;            
+            line-height: 1.33; 
+            &-wrapper {
+                margin: 10px 0 0;
+            }           
             &_month{
                 font-size: 13px;
                 line-height: 1.54;
@@ -477,7 +487,7 @@ h3 {
         &-author {
             position: absolute;
             left: 0;
-            bottom: 20px;
+            bottom: 0;
             line-height: 1.54;
             white-space: nowrap;
         }
@@ -512,9 +522,7 @@ h3 {
             }
         }
         &-controls{
-            &-wrapper{
-                cursor: pointer;
-            }
+            cursor: pointer;
             
             &_more {
                 color: rgba(0, 0, 0, .5);
